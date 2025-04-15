@@ -6,6 +6,13 @@ class MyComponent extends React.Component {
     state = {
         firtname: "",
         lastname: "",
+        arrJob: [
+            {'id': 1, 'title': 'Developer', 'description': 'Developing software'},
+            {'id': 2, 'title': 'Tester', 'description': 'Testing software'},
+            {'id': 3, 'title': 'Manager', 'description': 'Managing software'},
+            {'id': 4, 'title': 'Designer', 'description': 'Designing software'},
+            {'id': 5, 'title': 'DevOps', 'description': 'DevOps software'},
+        ]
     }
 
     handleChangeFirstname = (event) => {
@@ -33,7 +40,7 @@ class MyComponent extends React.Component {
                     <input type="text" value={this.state.lastname} onChange={(event) => this.handleChangeLastname(event)}/><br/>
                     <input type="button" onClick={this.handleSubmited} value="submit"/>
                 </form>
-                <ChildComponent name={'Nghia'} age={'23'} />
+                <ChildComponent name={this.state.firtname} age={'23'} arrJob={this.state.arrJob} />
             </div>
         );
     }
