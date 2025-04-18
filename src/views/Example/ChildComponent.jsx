@@ -28,7 +28,7 @@ class ChildComponent extends React.Component {
                 :
                 this.state.showJobs &&
                 <>
-                <table style={{ width: "100%"}}>
+                <table>
                     <tr>
                         <th>ID</th>
                         <th>Job</th>
