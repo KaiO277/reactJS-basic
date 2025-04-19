@@ -10,7 +10,8 @@ class ToDoList extends React.Component {
             { id: 1, title: 'Doing homework' },
             { id: 2, title: 'Doing exercise' },
             { id: 3, title: 'Doing project' },
-        ]
+        ],
+        editTodo: {}
     };
 
     addToDoList = (todo) => {
@@ -20,8 +21,25 @@ class ToDoList extends React.Component {
         toast.success("Add new todo success!");
     };
 
+    handleDeleteToDo = (todo) =>{
+        let currentListToDo = this.state.listTodos;
+        currentListToDo = currentListToDo.filter(item => item.id !== todo.id);
+        this.setState({
+            listTodos: currentListToDo
+        })
+        toast.error("Dlete a todo!");        
+    }
+
+    handleEditTodo = (todo) => {
+        this.setState({
+            editTodo : todo 
+        })
+    }
+
     render() {
-        let { listTodos } = this.state;
+        let { listTodos, editTodo } = this.state;
+        let isEmptyObj = Object.keys(editTodo).length === 0;
+        console
 
         return (
             <>
@@ -34,10 +52,10 @@ class ToDoList extends React.Component {
                         listTodos.map((item, index) => {
                             return (
                                 <div className="todo-child" key={item.id}>
-                                    <span>{index + 1}</span>
-                                    <span>{item.title}</span>
-                                    <button>Delete</button>
-                                    <button>Edit</button>
+                                    {isEmptyObj == true }
+                                    <span>{index+1} - {item.title}</span>
+                                    <button onClick={()=>this.handleDeleteToDo(item)}>Delete</button>
+                                    <button onClick={()=>this.handleEditTodo(item)}>Edit</button>
                                 </div>
                             );
                         })}
