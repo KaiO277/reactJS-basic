@@ -27,7 +27,7 @@ class ToDoList extends React.Component {
         this.setState({
             listTodos: currentListToDo
         })
-        toast.error("Dlete a todo!");        
+        toast.error("Delete a todo!");        
     }
 
     handleEditTodo = (todo) => {
@@ -36,10 +36,17 @@ class ToDoList extends React.Component {
         })
     }
 
+    handleChangeEdit = (event) => {
+        let editTodoCopy = {...this.state.editTodo};
+        editTodoCopy.title = event.target.value;
+        this.setState({
+            editTodo : editTodoCopy  
+        })
+    }
+
     render() {
         let { listTodos, editTodo } = this.state;
         let isEmptyObj = Object.keys(editTodo).length === 0;
-        console
 
         return (
             <>
@@ -52,8 +59,19 @@ class ToDoList extends React.Component {
                         listTodos.map((item, index) => {
                             return (
                                 <div className="todo-child" key={item.id}>
-                                    {isEmptyObj == true }
+                                    {isEmptyObj === true ? 
                                     <span>{index+1} - {item.title}</span>
+                                    :
+                                    <>
+                                    {item.id === editTodo.id ?
+                                        <span>
+                                            {index +1} - <input value={editTodo.title} onChange={(event)=>this.handleChangeEdit(event)}/>
+                                        </span>
+                                        :
+                                        <span>{index + 1} - {item.title}</span>
+                                    }
+                                    </>
+                        }
                                     <button onClick={()=>this.handleDeleteToDo(item)}>Delete</button>
                                     <button onClick={()=>this.handleEditTodo(item)}>Edit</button>
                                 </div>
