@@ -31,9 +31,22 @@ class ToDoList extends React.Component {
     }
 
     handleEditTodo = (todo) => {
-        this.setState({
-            editTodo : todo 
-        })
+        let { editTodo, listTodos } = this.state;
+        let isEmptyObj = Object.keys(editTodo).length === 0;
+        if (isEmptyObj === false && editTodo.id === todo.id){
+            let listTodosCopy = [...listTodos];
+            let objIndex = listTodosCopy.findIndex((item)=> item.id === todo.id);
+            listTodosCopy[objIndex].title = editTodo.title;
+            this.setState({
+                listTodos: listTodosCopy,
+                editTodo: {}
+            })
+            return;
+        }
+            this.setState({
+                editTodo : todo 
+            })
+
     }
 
     handleChangeEdit = (event) => {
@@ -72,8 +85,13 @@ class ToDoList extends React.Component {
                                     }
                                     </>
                         }
+                                    
+                                    <button onClick={()=>this.handleEditTodo(item)}>
+                                        {isEmptyObj === false && item.id === editTodo.id ?
+                                            "Save" : "Edit"}
+                                        
+                                    </button>
                                     <button onClick={()=>this.handleDeleteToDo(item)}>Delete</button>
-                                    <button onClick={()=>this.handleEditTodo(item)}>Edit</button>
                                 </div>
                             );
                         })}

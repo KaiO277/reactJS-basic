@@ -5,13 +5,24 @@ import MyComponent from './Example/MyComponent'
 import ToDoList from './Todos/ToDoList'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Nav from './Nav/Nav'
+import { BrowserRouter, Routes, Route } from "react-router";
+import Home from './Example/Home'
 
 function App() {
 
   return (
     <>
       {/* <MyComponent /> */}
-      <ToDoList />
+      {/* <ToDoList /> */}
+      <Nav />
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/todos" element={<ToDoList />} />
+            <Route path="/example" element={<MyComponent />} />
+          </Routes>
+      </BrowserRouter>
       <ToastContainer
                     position="top-right"
                     autoClose={5000}
