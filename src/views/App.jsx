@@ -9,20 +9,23 @@ import Nav from './Nav/Nav'
 import { BrowserRouter, Routes, Route } from "react-router";
 import Home from './Example/Home'
 
+
 function App() {
 
   return (
     <>
       {/* <MyComponent /> */}
       {/* <ToDoList /> */}
-      <Nav />
+      
       <BrowserRouter>
+      <Nav />
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/todos" element={<ToDoList />} />
             <Route path="/example" element={<MyComponent />} />
           </Routes>
       </BrowserRouter>
+      
       <ToastContainer
                     position="top-right"
                     autoClose={5000}
