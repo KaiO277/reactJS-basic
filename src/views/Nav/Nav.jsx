@@ -15,6 +15,9 @@ class Nav extends React.Component {
                 <NavLink to="/example" className={({ isActive }) => (isActive ? 'active' : '')}>
                     Example
                 </NavLink>
+                <NavLink to="/users" className={({ isActive }) => (isActive ? 'active' : '')}>
+                    User
+                </NavLink>
             </div>
         );
     }
