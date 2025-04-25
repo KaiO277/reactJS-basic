@@ -15,7 +15,7 @@ class ListUser extends React.Component {
         console.log(res.data.data); // Log the user data to the console
     }
     render() {
-        let { listUser } = this.state;
+        let { listUser } = this.state; 
         return (
         <div className="list-user-container">
             <h1>List of Users</h1>
